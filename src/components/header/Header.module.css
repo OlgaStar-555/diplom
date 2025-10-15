@@ -1,0 +1,30 @@
+.row_top {
+    align-items: center;
+    padding: .875rem;
+}
+
+.title {
+    font-size: 2.125rem;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.text {
+    font-weight: 700;
+}
+
+.divider {
+    font-weight: 300;
+}
+
+.button {
+    padding: .75rem;
+    background-color: #16a6af;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 #0000001F, 0 3px 3px 0 #0000003D;
+    text-transform: uppercase;
+    color: #ffffff;
+    
+}
