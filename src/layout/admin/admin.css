@@ -1,0 +1,58 @@
+.row[class*="_row_header"] {
+    padding-left: 10.4rem;
+}
+
+.container_admin .text-login {
+    margin-left: 8.5rem;
+}
+
+.card.card_admin {
+    --card-header-bg: #63536c;
+    --card-body-bg: #eae9ebf2;
+    --card-padding-top: 3.5rem;
+}
+
+.card.card_admin .card__header {
+    background-color: var(--card-header-bg);
+    padding-top: var(--card-padding-top);
+    padding-bottom: var(--card-padding-top);
+    color: #ffffff;
+}
+
+.card.card_admin .title {
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+}
+
+.card__body {
+    background-color: var(--card-body-bg);
+    padding: var(--card-padding-top) 10.4rem;
+}
+
+.card__text-field .field__title {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    color: #848484;
+    margin-bottom: .016rem;
+}
+
+.card__text-field .field__input {
+    width: 100%;
+    border: 1px solid #b7b7b7;
+    font-size: 1.6rem;
+    line-height: 1;
+    padding: .8rem .88rem .9rem  .88rem;
+}
+
+.card__text-field .field__input::placeholder {
+    color: #757575;
+}
+
+.button.button_submit {
+    border: none;
+    background-color: #16a6af;
+    box-shadow: 0 0 .3rem 0 #0000001f, 0 .3rem .3rem 0 #0000003d;
+    padding: 1.12rem 3.155rem 1.19rem 3.193rem;
+    border-radius: .3rem;
+    color: #ffffff;
+}

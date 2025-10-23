@@ -1,13 +1,25 @@
-.row_top {
+.row_header {
     align-items: center;
     padding: 1.4rem;
+}
+.text-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
 .title {
     font-size: 3.4rem;
     line-height: 1.15;
-    text-transform: uppercase;
-    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1rem;
+    line-height: 1.2;
+    letter-spacing: .5em;
 }
 
 .text {
@@ -26,5 +38,5 @@
     box-shadow: 0 0 .3rem 0 #0000001F, 0 .3rem .3rem 0 #0000003D;
     text-transform: uppercase;
     color: #ffffff;
-
+    text-decoration: none;
 }

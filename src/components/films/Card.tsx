@@ -1,7 +1,7 @@
 import "./Fims.css";
 // import { useState } from "react";
 
-import type {MovieFilm} from "../../types";
+import type {MovieFilm} from "../../types/allData.ts";
 
 import type {FilmHall} from "./Films.tsx";
 

@@ -5,7 +5,7 @@ import Card from "./Card";
 import { type ReactNode } from "react";
 
 import type { FilmProps } from "./Card";
-import type { AllData, MovieSeance } from "../../types";
+import type { AllData, MovieSeance } from "../../types/allData.ts";
 
 export interface FilmHall {
   hall_id: number;

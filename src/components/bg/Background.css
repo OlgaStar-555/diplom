@@ -3,13 +3,17 @@
     inset: 0;
     z-index: -1;
     background-size: cover;
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
 }
 
 .bg-img.bg-img__admin {
     background-image: url(/src/img/bg_admin.jpg);
+    filter: brightness(50%);
 }
+
+
+
 
 .bg-img.bg-img__client {
     background-image: url(/src/img/bg_client.jpg);

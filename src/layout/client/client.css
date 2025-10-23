@@ -1,0 +1,5 @@
+.container.container_content {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--content-gap);
+}

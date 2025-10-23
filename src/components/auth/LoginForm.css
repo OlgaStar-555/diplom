@@ -1,0 +1,24 @@
+
+
+
+.card.card_auth {
+    margin: 3.5rem auto 4.2rem;
+    width: 100%;
+    max-width: 48rem;
+}
+.card.card_auth .card__header.title {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    text-align: center;
+}
+
+.card.card_auth .card__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: .8rem;
+}
+
+.card.card_auth .card__body .button_submit {
+    margin-top: .9rem;
+}

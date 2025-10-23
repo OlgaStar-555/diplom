@@ -1,8 +1,17 @@
 #root {
     width: 100%;
-    max-width: 990px;
+    max-width: var(--root-width);
     margin: 0 auto;
 }
+
+#root:has(.container_content) {
+    --root-width: 99rem;
+}
+
+#root:has(.container_admin) {
+    --root-width: 96.2rem;
+}
+
 
 .row {
     display: flex;
@@ -13,17 +22,17 @@
     justify-content: space-between;
 }
 
-.text.text_capitalize {
-    text-transform: capitalize;
-}
-
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--content-gap);
+.title {
+    text-transform: uppercase;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .text {
     font-size: inherit;
     line-height: inherit;
+}
+
+.text.text_capitalize {
+    text-transform: capitalize;
 }

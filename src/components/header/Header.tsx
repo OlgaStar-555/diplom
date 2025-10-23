@@ -1,14 +1,20 @@
 import classes from "./Header.module.css";
 
-export default function Content(props: any) {
-  return (
-    <header className={`row row_space-between ${classes.row_top}`}>
-      <h1 className={classes.title}>
-        <span className={classes.text}>Идём</span>
-        <span className={classes.divider}>в</span>
-        <span className={classes.text}>кино</span>
-      </h1>
-      <button className={classes.button} onClick={props.onClick}>Войти</button>
-    </header>
-  );
+import {ADMIN, AUTH, ROOT} from "../../config/configRouter.ts";
+import {Link} from "react-router-dom";
+
+export default function Header({isAdmin}: { isAdmin: boolean }) {
+    return (
+        <header className={`row row_space-between ${classes.row_header}`}>
+            <section className={classes['text-login']}>
+                <h1 className={classes.title}>
+                    <span className={classes.text}>Идём</span>
+                    <span className={classes.divider}>в</span>
+                    <span className={classes.text}>кино</span>
+                </h1>
+                {isAdmin && <h2 className={classes.subtitle}>Администраторррская</h2>}
+            </section>
+            {!isAdmin && <Link to={`${ROOT}${ADMIN}/${AUTH}`} className={classes.button}>Войти</Link>}
+        </header>
+    );
 }
