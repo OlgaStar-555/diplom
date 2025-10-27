@@ -2,9 +2,10 @@ import './LoginForm.css'
 
 import React, {useState} from 'react';
 import type {LoginRequest, ApiError} from '../../types/login';
-import {type DataResponse, SERVER_NAME} from "../../data.ts";
+import {type DataResponse} from "../../API.ts";
 import {useNavigate} from "react-router-dom";
 import {ADMIN, ROOT} from "../../config/configRouter.ts";
+import API from "../../API.ts";
 
 
 export default function LoginForm() {
@@ -26,13 +27,7 @@ export default function LoginForm() {
 
         const loginData: LoginRequest = {login, password};
 
-        const response = await fetch(`${SERVER_NAME}login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(loginData),
-        });
+        const response = await API.login(loginData)
 
         if (!response.ok) {
             const errorData: ApiError = await response.json();
@@ -87,7 +82,7 @@ export default function LoginForm() {
                         className="field__input"
                     />
                 </div>
-                <button className="button button_submit" type="submit" disabled={loading}>
+                <button className="button button_admin" type="submit" disabled={loading}>
                     {loading ? 'Вход...' : 'Авторизоватьcя'}
                 </button>
                 {isSuccess === false && <p style={{color: 'red'}}>{message}</p>}

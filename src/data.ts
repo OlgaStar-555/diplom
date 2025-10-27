@@ -1,11 +1,7 @@
 
-export const SERVER_NAME = "https://shfe-diplom.neto-server.ru/";
+export const SERVER_NAME = "";
 
-export interface DataResponse {
-    success: boolean,
-    result?: never,
-    error?: string
-}
+
 
 
 export default async function getData(

@@ -4,7 +4,7 @@
   --bg-color: #ffffffe5;
   --card-bg: #f1ebe6f2;
   --content-gap: 3rem;
-;
+  --t-duration: .5s;
 
   font-family: 'Roboto', "Times New Roman", Arial, Helvetica, sans-serif;
   line-height: 1.5;
@@ -32,8 +32,16 @@ body {
   padding: 0;
   position: relative;
   line-height: 1.15;
+  box-sizing: border-box;
 }
 
 ul, ol {
   list-style: none;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: inherit;
 }

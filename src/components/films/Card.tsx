@@ -15,9 +15,7 @@ export default function Content(props: FilmProps) {
     console.log("props.filmHalls");
     console.log(props.filmHalls);
 
-    const handleClick = ({
-                             currentTarget,
-                         }: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    const handleClick = ({currentTarget}:React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         console.log(currentTarget);
         console.log(currentTarget.dataset.seanceId);
     };

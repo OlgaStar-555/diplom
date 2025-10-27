@@ -6,6 +6,8 @@
     --card-header-bg: #63536c;
     --card-body-bg: #eae9ebf2;
     --card-padding-top: 3.5rem;
+    --card-padding-left: 10.4rem;
+    --admin-size: 4.2rem;
 }
 
 .card.card_admin .card__header {
@@ -22,7 +24,7 @@
 
 .card__body {
     background-color: var(--card-body-bg);
-    padding: var(--card-padding-top) 10.4rem;
+    padding: var(--card-padding-top) var(--card-padding-left);
 }
 
 .card__text-field .field__title {
@@ -44,11 +46,22 @@
     color: #757575;
 }
 
-.button.button_submit {
-    border: none;
-    background-color: #16a6af;
+.button.button_admin {
     box-shadow: 0 0 .3rem 0 #0000001f, 0 .3rem .3rem 0 #0000003d;
     padding: 1.12rem 3.155rem 1.19rem 3.193rem;
     border-radius: .3rem;
+}
+
+.card .button.button_admin {
+    text-transform: uppercase;
+}
+
+.card .button.button_admin:not(.button_cancel) {
+    background-color: #16a6af;
     color: #ffffff;
 }
+.card .button.button_admin.button_cancel {
+    background-color: #ffffff;
+    color: #63536c;
+}
+

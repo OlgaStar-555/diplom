@@ -2,7 +2,7 @@ import "./NavDate.css";
 
 import type { DateData } from "./NavDate";
 import type { ReactNode } from "react";
-// import {setActiveDate} from "./NavDate"
+// import {setActiveDate} from "./navdate"
 
 interface DateDataProps extends DateData {
   isActiveDate: boolean;

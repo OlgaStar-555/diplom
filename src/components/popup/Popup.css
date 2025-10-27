@@ -1,0 +1,56 @@
+.popup {
+    position: fixed;
+    inset: 0;
+    background-color: #00000080;
+    color: #fff;
+    transition-duration: var(--t-duration);
+}
+
+.popup.active {
+    transform: translateY(0);
+    z-index: 5;
+}
+
+.popup__wrapper {
+    max-width: 96rem;
+    margin: 12rem auto;
+    transform: translateY(-200%);
+    transition-duration: inherit;
+}
+
+.popup.active .popup__wrapper {
+    transform: translateY(0);
+}
+
+
+.popup .card.card_admin .card__header {
+    padding-left: var(--card-padding-left);
+    padding-right: var(--admin-size);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: none;
+    background-color: transparent;
+    background-image: url('/src/img/close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2.2rem;
+}
+
+.popup .form_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.popup .button-list {
+    margin-top: var(--admin-size);
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
