@@ -1,3 +1,5 @@
+import InputNumber from "../../../Components/InputNumber/InputNumber.tsx";
+
 interface HallSizesProps {
     rowCount: number;
     colCount: number;
@@ -8,42 +10,36 @@ interface HallSizesProps {
 
 export default function HallSizes({rowCount, colCount, setRowCount, setColCount, createNewArr}: HallSizesProps) {
 
-    const handleChange = (targetVal: string, isRow: boolean, setValue: (newCount: number) => void) => {
-        console.log('handleChange')
-        const newValue = parseInt(targetVal);
-        if (!isNaN(newValue) && newValue > 0) {
-            setValue(newValue);
+    const handleChange = (targetVal: number, isRow: boolean, setValue: (newCount: number) => void) => {
+        if (!isNaN(targetVal) && targetVal > 0) {
+            setValue(targetVal);
 
             if (isRow) {
-                createNewArr(newValue, colCount)
+                createNewArr(targetVal, colCount)
             } else {
-                createNewArr(rowCount, newValue)
+                createNewArr(rowCount, targetVal)
             }
         }
     }
 
     return (
         <div className="row row_sizes">
-            <label htmlFor="row-size" className="box box_size">
-                <h6 className="box-size__title">Рядов, шт</h6>
-                <input id="row-size" type="number"
-                       className="box-size__field"
-                       value={rowCount}
-                       onChange={({target}) => {
-                           handleChange(target.value, true, setRowCount)
-                       }}
-                />
-            </label>
-            <label htmlFor="col-size" className="box box_size">
-                <h6 className="box-size__title">Мест, шт</h6>
-                <input id="col-size" type="number"
-                       className="box-size__field"
-                       value={colCount || ''}
-                       onChange={({target}) => {
-                           handleChange(target.value, false, setColCount)
-                       }}
-                />
-            </label>
+            <InputNumber value={rowCount}
+                         handleChange={(targetVal) => {
+                             handleChange(targetVal, true, setRowCount)
+                         }}
+                         id='row-size'
+                         title='Рядов, шт'
+                         classItem={'box_size'}/>
+            <InputNumber value={colCount}
+                         handleChange={(targetVal) => {
+                             handleChange(targetVal, false, setColCount)
+                         }}
+                         id='col-size'
+                         title='Мест, шт, шт'
+                         classItem={'box_size'}/>
+
+
         </div>
     )
 }

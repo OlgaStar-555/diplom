@@ -1,0 +1,20 @@
+.price-control__item {
+    display: flex;
+    align-items: stretch;
+}
+
+.box.box_price-control .price-control__item + .price-control__item {
+    margin-top: 1.2rem;
+}
+
+.price-control__description {
+    display: flex;
+    align-items: center;
+    margin-top: 1.125em;
+    color: var(--color-sec-txt);
+}
+
+.price-control__description .description__txt::before,
+.price-control__description .description__txt::after{
+    content: '\00A0';
+}

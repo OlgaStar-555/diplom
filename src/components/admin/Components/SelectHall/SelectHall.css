@@ -1,0 +1,16 @@
+.button.button_select-hall {
+    height: var(--admin-size);
+    padding: .9em 1.5em;
+    border-radius: .3rem;
+    box-shadow: 0 0 .3rem 0 #0000001f, 0 .3rem .3rem 0 #0000003d;
+    text-transform: uppercase;
+    line-height: 1.6rem;
+}
+
+.button.button_select-hall.active {
+    height: calc(var(--admin-size) + .4rem);
+    padding: 1.54rem 2.3rem 1.39rem 2.31rem;
+    box-shadow: 0 0 .2rem 0 #0000001f, 0 .2rem .2rem 0 #0000003d, 0 .6rem .8rem 0 #0000003d;
+    font-size: 1.5rem;
+    font-weight: 500;
+}

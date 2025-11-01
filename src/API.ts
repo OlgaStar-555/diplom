@@ -14,6 +14,7 @@ export default class API {
 
     private static postfixList = {
         hall: 'hall',
+        price: 'price',
 
     }
 
@@ -110,6 +111,11 @@ export default class API {
         params.set('rowCount', rowCount.toString())
         params.set('placeCount', colCount.toString())
         params.set('config', JSON.stringify(arrayConfig))
+
+        console.log(params)
+        console.log(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`)
+
+
         return await fetch(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`, {
             method: 'POST',
             body: params
@@ -122,9 +128,39 @@ export default class API {
                     }
                 }
             );
-
-
     }
+
+    public static async setPriceOfHall(
+        id: number,
+        priceStandart: number,
+        priceVip: number,
+    ): Promise<MovieHall | undefined> {
+
+
+        console.log(`API CONFIG PRICE \n\n', ${priceStandart} <==> ${priceVip}`)
+
+        const params = new FormData()
+        params.set('priceStandart', priceStandart.toString())
+        params.set('priceVip', priceVip.toString())
+
+        console.log(`${API.SERVER_NAME}${API.postfixList.price}/${id}`)
+
+        console.log(params)
+
+        return await fetch(`${API.SERVER_NAME}${API.postfixList.price}/${id}`, {
+            method: 'POST',
+            body: params
+        })
+            .then(response => response.json())
+            .then((data) => {
+                    console.log(data)
+                    if (data.success) {
+                        return data.result;
+                    }
+                }
+            );
+    }
+
 
 }
 

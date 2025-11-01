@@ -4,14 +4,14 @@ import {useContext, useEffect, useState} from "react";
 import API from "../../../../API.ts";
 import {AllDataContext} from "../../../../context/AllDataContext.tsx";
 import AdminCard from "../AdminCard.tsx";
-import type {HallControlProps} from "../../AdminList.tsx";
-import type {MovieHall} from "../../../../types/allData.ts";
+import type {HallConfigProps} from "../../AdminList.tsx";
 import {hallPlaceTypesAdmin, HALL_PLACE_TYPES_ADMIN, type HallPlaceTypesAdmin} from "../../../../config/halls.ts";
 import HallPlace from "../../../HallPlace/HallPlace.tsx";
 import HallSizes from "./Components/HallSizes.tsx";
 import Legend from "../../../Legend/Legend.tsx";
+import SelectHall from "../../Components/SelectHall/SelectHall.tsx";
 
-export default function HallConfig({halls}: HallControlProps) {
+export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigProps) {
 
     const context = useContext(AllDataContext);
 
@@ -21,7 +21,6 @@ export default function HallConfig({halls}: HallControlProps) {
     const {refreshAllData} = context;
 
 
-    const [hallsMap, setHallsMap] = useState<Map<number, MovieHall>>(new Map())
 
     const [activeHallId, setActiveHallId] = useState<number | undefined>(undefined)
 
@@ -55,12 +54,14 @@ export default function HallConfig({halls}: HallControlProps) {
             })[0]
 
             setActiveHallId(id)
-            setHallsMap(new Map(halls.map(hall => [hall.id, hall])));
+            if(setHallsMap !== undefined) {
+                setHallsMap(new Map(halls.map(hall => [hall.id, hall])));
+            }
             setRowCount(hall.hall_config.length)
             setColCount(hall.hall_config[0].length)
             createNewArrFromArr(hall.hall_config)
         }
-    }, [halls, activeHallId]);
+    }, [halls, activeHallId, setHallsMap]);
 
     const selectHall = (id: number) => {
         setActiveHallId(id)
@@ -118,22 +119,7 @@ export default function HallConfig({halls}: HallControlProps) {
         <>
             <AdminCard boxId={BOX_ID} title="Конфигурация залов">
                 <>
-                    <section className="box box_buttons">
-                        <h4 className="subtitle">Выберите зал для конфигурации:</h4>
-                        <div className="row row_buttons">
-                            {halls?.map((hall) => {
-                                return (
-                                    <button key={hall.id}
-                                            className={`button button_select-hall${hall.id === activeHallId ? ' active' : ''}`}
-                                            onClick={() => {
-                                                selectHall(hall.id)
-                                            }} type="button">
-                                        {hall.hall_name}
-                                    </button>
-                                )
-                            })}
-                        </div>
-                    </section>
+                    <SelectHall halls={halls} activeHallId={activeHallId} handleClick={selectHall}/>
                     <section className="box box_sizes">
                         <h4 className="subtitle">Укажите количество рядов и максимальное количество кресел в ряду:</h4>
                         <HallSizes

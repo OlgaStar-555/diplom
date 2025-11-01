@@ -4,10 +4,7 @@ import {
     type HallPlaceTypesAdmin,
     type HallPlaceTypesClient
 } from "../../config/halls.ts";
-
-
-const CLASS_NAME_PREFIX = 'place'
-
+import {HALL_PLACE_CLASS_NAME} from "../../config/constants.ts";
 
 interface HallPlaceProps {
     row: number;
@@ -24,7 +21,7 @@ export default function HallPlace({row, col, hall, status, isAdmin, onPlaceClick
     const title = isAdmin ? status as HallPlaceTypesAdmin : status as HallPlaceTypesClient
 
     return (
-        <button className={`${CLASS_NAME_PREFIX} ${CLASS_NAME_PREFIX}_${hall[row][col]}`}
+        <button className={`${HALL_PLACE_CLASS_NAME} ${HALL_PLACE_CLASS_NAME}_${hall[row][col]}`}
                 type="button"
                 style={
                     {

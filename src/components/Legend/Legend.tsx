@@ -4,6 +4,7 @@ import {
     type HallPlaceTypesAdmin, type HallPlaceTypesClient,
     HALL_PLACE_TYPES_ADMIN, HALL_PLACE_TYPES_CLIENT
 } from "../../config/halls.ts";
+import {HALL_PLACE_CLASS_NAME} from "../../config/constants.ts";
 
 
 type HallPlaceTypes = HallPlaceTypesAdmin | HallPlaceTypesClient
@@ -20,7 +21,7 @@ export default function Legend({hallPlaceTypes, hallPlaceTypesRu} :LegendProps) 
 
                 return (
                     <li key={key} className="legend-item">
-                        <div className={`place place_${item}`}></div>
+                        <div className={`${HALL_PLACE_CLASS_NAME} ${HALL_PLACE_CLASS_NAME}_${item}`}></div>
                         <h6 className="legend-item__title">
                             &nbsp;—&nbsp;{hallPlaceTypesRu[key]}
                         </h6>

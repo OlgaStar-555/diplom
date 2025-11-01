@@ -2,7 +2,7 @@
     --place-size: 2.6rem;
 }
 
-.place {
+.hall-place {
     width: var(--place-size);
     height: var(--place-size);
     border-width: 1px;
@@ -11,19 +11,19 @@
     background-color: transparent;
 }
 
-.container_admin .place.place_standart {
+.container_admin .hall-place.hall-place_standart {
     border-color: #393939;
     background-color: #C4C4C4;
 ;
 }
 
-.container_admin .place.place_vip {
+.container_admin .hall-place.hall-place_vip {
     border-color: #0A828A;
     background-color: #B0D6D8;
     background-image: url("../../img/hall-place-bg.png");
 ;
 }
 
-.container_admin .place.place_disabled {
+.container_admin .hall-place.hall-place_disabled {
     border-color: var(--color-sec-txt);
 }

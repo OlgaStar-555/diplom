@@ -1,0 +1,22 @@
+.box.box_input-number {
+    display: block;
+    width: 10rem;
+    flex-basis: 10rem;
+}
+
+.box.box_input-number .input-number__title {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    margin-bottom: .125em;
+    color: var(--color-sec-txt);
+}
+
+.box.box_input-number .input-number__field {
+    width: 100%;
+    margin: 0;
+    padding: .8rem .9rem;
+    border: 1px solid #b7b7b7;
+    font-size: 1.6rem;
+    line-height: 1;
+}
