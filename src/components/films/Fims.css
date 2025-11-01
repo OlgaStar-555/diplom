@@ -1,7 +1,3 @@
-.content {
-    margin-bottom: var(--content-gap);
-}
-
 .content .card-list {
     display: flex;
     flex-direction: column;

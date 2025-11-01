@@ -2,6 +2,10 @@
     padding-left: clamp(1.4rem, 10vw, 9.9rem);
 }
 
+.container.container_admin {
+    margin-bottom: var(--content-gap);
+}
+
 .card.card_admin {
     --card-header-bg: #63536c;
     --card-body-bg: #eae9ebf2;
@@ -30,7 +34,7 @@
 .card__text-field .field__title {
     font-size: 1.2rem;
     line-height: 1.4rem;
-    color: #848484;
+    color: var(--color-sec-txt);
     margin-bottom: .016rem;
 }
 

@@ -10,11 +10,6 @@ export default function App() {
 
     const location = useLocation()
 
-
-    console.log('\n\n\t\tpath\t\t', location.pathname.includes(ADMIN))
-    console.table(location)
-
-
     const isAdmin = location.pathname.includes(ADMIN)
 
 

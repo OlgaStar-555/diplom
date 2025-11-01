@@ -9,7 +9,7 @@ import AdminCard from "../AdminCard.tsx";
 import type {HallControlProps} from "../../AdminList.tsx";
 
 
-export default function HallControl({halls} : HallControlProps) {
+export default function HallControl({halls}: HallControlProps) {
     const context = useContext(AllDataContext);
 
     if (!context) {
@@ -19,6 +19,8 @@ export default function HallControl({halls} : HallControlProps) {
 
     const removeHall = async (id: number) => {
         await API.removeHall(id).then((data) => {
+            console.log('\n\n\t\tREMOVE')
+            console.log(data)
             refreshAllData(data)
         })
     }
@@ -60,28 +62,30 @@ export default function HallControl({halls} : HallControlProps) {
         <>
             <AdminCard boxId={BOX_ID} title="Управление залами">
                 <>
-                    <h4 className="subtitle">Доступные залы:</h4>
-                    <ul className="admin-list admin-list_halls">
-                        {halls?.map((hall) => {
-                            console.log(hall)
-                            return (
-                                <li key={hall.id} className="halls__item hall">
-                                    <h5 className="subtitle" key={hall.id}>{hall.hall_name}</h5>
-                                    <button className="button button_remove-hall"
-                                            disabled={loading}
-                                            onClick={async () => {
-                                                try {
-                                                    await removeHall(hall.id);
-                                                } catch (error) {
-                                                    console.error("Ошибка при удалении зала:", error);
-                                                }
-                                            }}
-                                            type="button">
-                                    </button>
-                                </li>
-                            )
-                        })}
-                    </ul>
+                    <section className='box'>
+                        <h4 className="subtitle">Доступные залы:</h4>
+                        <ul className="admin-list admin-list_halls">
+                            {halls?.map((hall) => {
+                                console.log(hall)
+                                return (
+                                    <li key={hall.id} className="halls__item hall">
+                                        <h5 className="subtitle" key={hall.id}>{hall.hall_name}</h5>
+                                        <button className="button button_remove-hall"
+                                                disabled={loading}
+                                                onClick={async () => {
+                                                    try {
+                                                        await removeHall(hall.id);
+                                                    } catch (error) {
+                                                        console.error("Ошибка при удалении зала:", error);
+                                                    }
+                                                }}
+                                                type="button">
+                                        </button>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </section>
                     <button onClick={openPopup} className="button button_admin" type="button" disabled={loading}>
                         {loading ? 'Loading...' : 'Создать зал'}
                     </button>

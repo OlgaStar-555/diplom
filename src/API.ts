@@ -1,4 +1,4 @@
-import type {AllData} from "./types/allData.ts";
+import type {AllData, MovieHall} from "./types/allData.ts";
 import type {LoginRequest} from "./types/login.ts";
 
 export interface DataResponse {
@@ -63,7 +63,7 @@ export default class API {
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
-                if(data?.success) {
+                if (data?.success) {
                     return data?.result
                 }
             })
@@ -72,18 +72,45 @@ export default class API {
     }
 
     public static async addHall(hallName: string): Promise<AllData | undefined> {
-        if(hallName === '') {
+        if (hallName === '') {
             return
         }
         console.log('API addHall', hallName)
 
         const params = new FormData()
         params.set('hallName', hallName)
-        console.log('params')
-        console.table(params)
-
 
         return await fetch(`${API.SERVER_NAME}${API.postfixList.hall}`, {
+            method: 'POST',
+            body: params
+        })
+            .then(response => response.json())
+            .then((data) => {
+                    if (data.success) {
+                        return data.result;
+                    }
+                }
+            );
+
+
+    }
+
+    public static async setConfigOfHall(
+        id: number,
+        rowCount: number,
+        colCount: number,
+        arrayConfig: string[][]
+    ): Promise<MovieHall | undefined> {
+        if (arrayConfig.length === 0 || arrayConfig?.[0].length === 0) {
+            return
+        }
+        console.log('API CONFIG\n\n', arrayConfig)
+
+        const params = new FormData()
+        params.set('rowCount', rowCount.toString())
+        params.set('placeCount', colCount.toString())
+        params.set('config', JSON.stringify(arrayConfig))
+        return await fetch(`${API.SERVER_NAME}${API.postfixList.hall}/${id}`, {
             method: 'POST',
             body: params
         })

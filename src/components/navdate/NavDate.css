@@ -22,8 +22,7 @@
     list-style: none;
     width: auto;
     display: flex;
-    align-items: center;
-    transition-duration: .5s;
+    transition-duration: var(--t-duration);
 }
 
 .nav-line__item {

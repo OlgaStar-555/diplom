@@ -3,6 +3,10 @@
 :root {
   --bg-color: #ffffffe5;
   --card-bg: #f1ebe6f2;
+
+  --color-sec-txt: #848484;
+
+
   --content-gap: 3rem;
   --t-duration: .5s;
 
@@ -39,9 +43,15 @@ ul, ol {
   list-style: none;
 }
 
+h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
 .button {
   border: none;
   cursor: pointer;
   white-space: nowrap;
+  font-family: inherit;
   font-size: inherit;
 }
