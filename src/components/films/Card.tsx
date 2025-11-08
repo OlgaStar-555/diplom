@@ -2,22 +2,32 @@ import "./Fims.css";
 // import { useState } from "react";
 
 import type {MovieFilm} from "../../types/allData.ts";
-
 import type {FilmHall} from "./Films.tsx";
+import {useNavigate} from "react-router-dom";
+import {FILMS} from "../../config/configRouter.ts";
 
 export interface FilmProps extends MovieFilm {
     filmHalls?: Map<number, FilmHall>;
+    setSeance: (id: number) => void
+
 }
 
-export default function Content(props: FilmProps) {
+
+export default function Card(props: FilmProps) {
+
+    const navigate = useNavigate()
+
     console.log(`\n\n\n\n\t\tCARD\t${props.film_name}\n\n`);
+
+    console.table(props)
 
     console.log("props.filmHalls");
     console.log(props.filmHalls);
 
-    const handleClick = ({currentTarget}:React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-        console.log(currentTarget);
-        console.log(currentTarget.dataset.seanceId);
+    const handleClick = (seanceId: number): void => {
+        props.setSeance(seanceId)
+
+        navigate(`${FILMS}/${seanceId}`)
     };
 
     const items: React.ReactNode[] = [];
@@ -31,8 +41,10 @@ export default function Content(props: FilmProps) {
                             <li key={seance.id}>
                                 <button
                                     className="button button_link"
-                                    onClick={handleClick}
-                                    data-seance-id={seance.id}>
+                                    onClick={() => {
+                                        handleClick(seance.id)
+                                    }}
+                                >
                                     {seance.time}
                                 </button>
                             </li>

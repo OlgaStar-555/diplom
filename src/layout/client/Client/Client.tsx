@@ -1,9 +1,9 @@
 // import {useState} from "react";
-import './client.css'
+import './Client.css'
 
-import Films from "../../components/films/Films.tsx";
-import NavDate from "../../components/navdate/NavDate.tsx";
-import useAllData from "../../context/AllDataContext.tsx";
+import Films from "../../../components/films/Films.tsx";
+import NavDate from "../../../components/navdate/NavDate.tsx";
+import useAllData from "../../../context/AllDataContext.tsx";
 
 export default function Client() {
 

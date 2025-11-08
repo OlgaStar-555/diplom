@@ -2,7 +2,7 @@ import "./Fims.css";
 
 import Card from "./Card";
 
-import {type ReactNode} from "react";
+import {type ReactNode, useState} from "react";
 
 import type {FilmProps} from "./Card";
 import type {AllData, MovieSeance} from "../../types/allData.ts";
@@ -13,12 +13,21 @@ export interface FilmHall {
     seanceList?: SeanceData[];
 }
 
-export type SeanceData = {
+export interface SeanceData {
     id: number;
     time: string;
-};
+}
+
+export interface TicketProps {
+    seance: MovieSeance | null;
+}
+
 
 export default function Films({halls, seances, films}: AllData): ReactNode {
+
+    const [ticketProps, setTicketProps] = useState<TicketProps | undefined>({
+        seance: null
+    })
 
     if (halls && seances && films) {
         const hallsMap = new Map(halls.map((hall) => [hall.id, hall]));
@@ -47,7 +56,21 @@ export default function Films({halls, seances, films}: AllData): ReactNode {
                 }
             });
 
-            return {...film, filmHalls: filmHalls};
+            return {
+                ...film,
+                filmHalls: filmHalls,
+                setSeance: (id: number) => {
+                    console.log('\n\n\t\tticketProps')
+                    console.table(ticketProps)
+
+                    setTicketProps((prevProps: TicketProps | undefined) => {
+                        const seance = seances?.find(item => item.id === id)
+                        if (seance != undefined) {
+                            return {...prevProps, seance}
+                        }
+                    })
+                }
+            };
         });
 
         return (
@@ -57,9 +80,9 @@ export default function Films({halls, seances, films}: AllData): ReactNode {
                         return (
                             filmProp.filmHalls?.size ? (
                                 <li key={filmProp.id}>
-                                    <Card {...filmProp} />
+                                    <Card {...filmProp}  />
                                 </li>
-                            ) : <></>
+                            ) : null
                         );
                     })}
                 </ul>
