@@ -65,7 +65,10 @@ export default function HallOpen({halls, hallsMap, setHallsMap}: HallConfigProps
                 <>
                     <SelectHall halls={halls} activeHallId={activeHallId} handleClick={selectHall}/>
 
-                    <p className="text_center">Всё готово к открытию</p>
+                    <p className="text_center">
+                        {(hallOpen) ? 'Зал можно закрыть' : 'Всё готово к открытию'}
+
+                    </p>
 
                     <div style={{
                         textAlign: 'center'
