@@ -14,13 +14,17 @@
 }
 
 
-.card-list > .card_admin .card__header {
+.card-list > .card_admin>.card__header {
     padding-left: var(--card-padding-left);
     padding-right: var(--admin-size);
 
 }
 
-.card-list .card.card_admin .card__header::before {
+.card-list > .card_admin>.card__header:has(>.accordion__button) {
+    padding: 0;
+}
+
+.card-list .card.card_admin>.card__header::before {
     content: '';
     position: absolute;
     left: calc(var(--card-padding-left) - var(--admin-size) - var(--circle--size) / 2);
@@ -33,7 +37,12 @@
     z-index: 1;
 }
 
-.card-list > .card_admin .card__header::after {
+.card-list > .card_admin>.card__header:has(>.accordion__button)::before {
+    top: var(--card-padding-top);
+}
+
+
+.card-list > .card_admin>.card__header::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -43,18 +52,22 @@
     transform: translateX(-50%);
 }
 
-.card-list > .card_admin:first-of-type .card__header::after {
+.card-list > .card_admin:first-of-type>.card__header::after {
     height: 70%;
 }
 
-.card-list > .card_admin + .card_admin .card__header::after {
+.card-list > .card_admin + .card_admin>.card__header::after {
     height: 100%;
 }
 
-.card-list > .card_admin + .card_admin:last-of-type .card__header::after {
+.card-list > .card_admin + .card_admin:last-of-type>.card__header::after {
     height: 50%;
     bottom: auto;
     top: 0;
+}
+
+.card-list > .card_admin>.card__header>.accordion__button {
+    padding: var(--card-padding-top) var(--admin-size) var(--card-padding-top) var(--card-padding-left);
 }
 
 .card-list > .card_admin .card__header .title {
@@ -119,4 +132,8 @@
     margin-top: 1em;
 }
 
-
+.button-list {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}

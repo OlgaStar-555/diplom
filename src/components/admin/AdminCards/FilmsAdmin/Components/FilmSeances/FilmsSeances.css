@@ -1,0 +1,127 @@
+.dnd-container {
+    --gap: 3.5rem;
+    padding-right: var(--gap);
+    width: 100%;
+}
+
+.film-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(calc(31.35% - 1rem), auto));
+    grid-auto-rows: minmax(5rem, auto);
+    gap: 1.5rem;
+}
+
+.film-card {
+    display: flex;
+    column-gap: 1rem;
+    padding-right: 1rem;
+    border: 1px solid #0000004d;
+}
+
+.film-card .film-card__img {
+    object-fit: contain;
+    object-position: left center;
+    width: 3.8rem;
+    height: 5rem;
+}
+
+.film-card .film-card__description {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.film-card .description__title {
+    font-weight: 500;
+}
+
+.film-card .description__duration {
+    color: #000000b2;
+}
+
+.film-card .film-card__delete {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: .3rem;
+    border: none;
+    background-color: #ffffff;
+    background-image: url('/src/img/film-delete.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.2rem;
+}
+
+.hall-box-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap);
+    margin-top: 9rem;
+    padding: 0 var(--gap);
+}
+
+.hall-box-list .hall-box {
+
+}
+ .hall-box .txt_empty{
+     margin-left: 1rem;
+    color: var(--color-sec-txt);
+}
+
+.hall-box__drop-zone {
+    height: 6rem;
+    border: 1px solid var(--color-sec-txt);
+    padding: .8rem 0;
+}
+
+.hall-box__drop-zone .hall-box__seance {
+    position: absolute;
+}
+
+.hall-box__drop-zone .hall-box__seance .seance__film-name {
+    border: 1px solid #0000004d;
+    padding: 0 1rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    min-width: 7rem;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.hall-box__seance .seance__time {
+    padding-top: .6rem;
+    position: absolute;
+    left: -2px;
+    bottom: calc(-1rem - 1px);
+    transform: translate(-50%, 100%);
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    color: var(--color-sec-txt);
+}
+
+.hall-box__seance .seance__time::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: .5rem;
+    width: 1px;
+    background-color: var(--color-sec-txt);
+}
+
+.hall-box__removal-zone {
+    position: absolute;
+    transform: translate(-100%, -100%);
+}
+
+.hall-box__removal-zone::after {
+    content: '\1F5D1';
+    display: block;
+    height: 6rem;
+    width: var(--gap);
+    font-size: 5.6rem;
+}
+

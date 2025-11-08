@@ -1,108 +1,104 @@
-    import React, {useEffect, useState} from "react";
+import React, {type ReactNode, useEffect, useState} from "react";
 
-    import './Popup.css'
-    import {T_DURATION} from "../../config/constants.ts";
+import './Popup.css'
+import {T_DURATION} from "../../config/constants.ts";
 
-    export interface ButtonProps {
-        name: string;
-        btnTitle: string;
-        isSubmit: boolean
-        handler?: (data: unknown) => void
+export interface ButtonProps {
+    name: string;
+    btnTitle: string;
+    isSubmit: boolean
+    element?: ReactNode;
+    handler?: (data: unknown | File) => void
+}
+
+interface PopupProps {
+    setIsPopup: (isPopup: boolean) => void;
+    children?: React.JSX.Element;
+    buttonProps?: ButtonProps[];
+    handleSubmit?: () => void;
+    title: string;
+}
+
+
+export default function Popup({
+                                  setIsPopup,
+                                  children,
+                                  buttonProps,
+                                  handleSubmit,
+                                  title = 'Управление чем-то'
+                              }: PopupProps) {
+    const defaultClassName = 'popup'
+    const activeClassName = `${defaultClassName} active`
+
+    function closePopup() {
+        setPopupClassName(defaultClassName)
+        setTimeout(() => {
+            setIsPopup(false)
+        }, T_DURATION)
     }
 
-    export interface StateMapItem {
-        val: string;
-        setVal: React.Dispatch<React.SetStateAction<string>>
-    }
 
-    interface PopupProps {
-        statesMap: Map<string, StateMapItem>;
-        setIsPopup: (isPopup: boolean) => void;
-        children?: React.JSX.Element;
-        buttonProps?: ButtonProps[];
-        handleSubmit?: () => void;
-        title: string;
-    }
+    const [popupClassName, setPopupClassName] = useState(defaultClassName)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPopupClassName(activeClassName)
+        }, 0)
+    }, []);
 
 
-    export default function Popup({
-                                      setIsPopup,
-                                      children,
-                                      buttonProps,
-                                      handleSubmit,
-                                      title = 'Управление чем-то'
-                                  }: PopupProps) {
-        const defaultClassName = 'popup'
-        const activeClassName = `${defaultClassName} active`
+    // const [isSubmit, SetIsSubmit] = useState(false)
 
-        function closePopup() {
-            setPopupClassName(defaultClassName)
-            setTimeout(() => {
-                setIsPopup(false)
-            }, T_DURATION)
-        }
+    // const actBtn = (handler: (data: unknown) => void) => {
+    //     handler()
+    //     closePopup()
+    // }
 
 
-        const [popupClassName, setPopupClassName] = useState(defaultClassName)
+    return (
+        <div className={popupClassName} style={{transitionDuration: `var(--t-duration)`}}>
+            <div className="popup__wrapper">
+                <article className="card card_admin ">
+                    <div className="card__header">
+                        <h3 className="title">
+                            {title}
+                        </h3>
+                        <button type="button" onClick={closePopup} className="close"></button>
+                    </div>
 
-        useEffect(() => {
-            setTimeout(() => {
-                setPopupClassName(activeClassName)
-            }, 0)
-        }, []);
-
-
-
-        // const [isSubmit, SetIsSubmit] = useState(false)
-
-        // const actBtn = (handler: (data: unknown) => void) => {
-        //     handler()
-        //     closePopup()
-        // }
-
-
-        return (
-            <div className={popupClassName}  style={{transitionDuration: `var(--t-duration)`}}>
-                <div className="popup__wrapper">
-                    <article className="card card_admin ">
-                        <div className="card__header">
-                            <h3 className="title">
-                                {title}
-                            </h3>
-                            <button type="button" onClick={closePopup} className="close"></button>
+                    <form className="card__body" onSubmit={handleSubmit}>
+                        <div className="form_inputs">
+                            {children}
                         </div>
+                        <div className="button-list">
+                            {buttonProps?.length &&
+                                buttonProps.map(({
+                                                     element,
+                                                     name,
+                                                     btnTitle, isSubmit = false, handler = () => {
+                                    }
+                                                 }) => {
 
-                        <form className="card__body" onSubmit={handleSubmit}>
-                            <div className="form_inputs">
-                                {children}
-                            </div>
-                            <div className="button-list">
-                                {buttonProps?.length &&
-                                    buttonProps.map(({
-                                                         name,
-                                                         btnTitle, isSubmit = false, handler = () => {
-                                        }
-                                                     }) => {
-                                        return (
-                                            < button key={name}
-                                                     className="button button_admin"
-                                                     type={isSubmit ? 'submit' : 'button'}
-                                                     onClick={handler}
+                                    return (
+                                        element !== undefined ?
+                                            element
+                                            : <button key={name}
+                                                      className='button button_admin'
+                                                      type={isSubmit ? 'submit' : 'button'}
+                                                      onClick={handler}
                                             >
                                                 {btnTitle}
                                             </button>
-                                        )
-                                    })
-
-
-                                }
-                                <button className="button button_admin button_cancel" onClick={closePopup} type="button">
-                                    Отменить
-                                </button>
-                            </div>
-                        </form>
-                    </article>
-                </div>
+                                    )
+                                })
+                            }
+                            <button className="button button_admin button_cancel" onClick={closePopup} type="button">
+                                Отменить
+                            </button>
+                        </div>
+                    </form>
+                </article>
             </div>
-        )
-    }
+        </div>
+    )
+}

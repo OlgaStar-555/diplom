@@ -16,6 +16,7 @@
 .row {
     display: flex;
     align-items: center;
+    flex-direction: row;
 }
 
 .row.row_space-between {

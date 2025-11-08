@@ -25,16 +25,18 @@ export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConf
 
 
     useEffect(() => {
-        console.log('\n\n\t\tUSE EFFECT PRICE')
-
         if (halls && halls.length > 0) {
-            const id = activeHallId || halls[0].id
+            const id = (activeHallId !== undefined
+                && halls.find(el => el.id === activeHallId) !== undefined)
+                ? activeHallId
+                : halls[0].id
 
             const hall = halls.filter((hall) => {
                 return hall.id === id
             })[0]
 
             setActiveHallId(id)
+
             if (halls.length) {
 
                 const newHallsMap = new Map(halls.map(hall => [hall.id, hall]))
@@ -87,12 +89,14 @@ export default function HallPriceConfig({halls, hallsMap, setHallsMap}: HallConf
                                    priceVip={priceVip}
                                    setPriceVip={setPriceVip}/>
                     </section>
-                    <button onClick={saveConfig} className="button button_admin" type="button">
-                        Сохранить
-                    </button>
-                    <button onClick={cancelConfig} className="button button_admin" type="button">
-                        Отмена
-                    </button>
+                    <div className='button-list'>
+                        <button onClick={saveConfig} className="button button_admin" type="button">
+                            Сохранить
+                        </button>
+                        <button onClick={cancelConfig} className="button button_admin button_cancel" type="button">
+                            Отмена
+                        </button>
+                    </div>
                 </>
             </AdminCard>
         </>

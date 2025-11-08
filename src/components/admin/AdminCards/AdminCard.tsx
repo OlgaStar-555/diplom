@@ -13,11 +13,11 @@ export default function AdminCard({title, boxId, children} : AdminCardProps) {
     return (
         <article id={boxId} className="card card_admin card_accordion">
             <input type="checkbox" id={CHECKBOX_ID} className="accordion__checkbox" defaultChecked/>
-            <header>
-                <label htmlFor={CHECKBOX_ID} className="card__header accordion__button">
-                    <h3 className="title">
+            <header className="card__header">
+                <label htmlFor={CHECKBOX_ID} className="accordion__button">
+                    <h2 className="title">
                         {title}
-                    </h3>
+                    </h2>
                 </label>
             </header>
             <div className="card__body">

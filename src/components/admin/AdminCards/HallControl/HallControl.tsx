@@ -1,9 +1,8 @@
 import './HallControl.css'
 
-import React, {type ChangeEvent, useContext, useState} from "react";
-// import type {MovieHall} from "../../../../types/allData.ts";
+import {type ChangeEvent, useContext, useState} from "react";
 import API from "../../../../API.ts";
-import Popup, {type ButtonProps, type StateMapItem} from "../../../popup/Popup.tsx";
+import Popup, {type ButtonProps} from "../../../popup/Popup.tsx";
 import {AllDataContext} from "../../../../context/AllDataContext.tsx";
 import AdminCard from "../AdminCard.tsx";
 import type {HallControlProps} from "../../AdminList.tsx";
@@ -19,30 +18,22 @@ export default function HallControl({halls}: HallControlProps) {
 
     const removeHall = async (id: number) => {
         await API.removeHall(id).then((data) => {
-            console.log('\n\n\t\tREMOVE')
-            console.log(data)
             refreshAllData(data)
         })
     }
+
     const [loading, setLoading] = useState<boolean>(false);
     const [isPopup, setIsPopup] = useState<boolean>(false);
 
-    const openPopup = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.preventDefault()
-        setLoading(true)
-        setIsPopup(!isPopup)
-        setLoading(false)
-    }
     const BOX_ID = 'hall-control'
 
-    const MAP_KEY_STR = 'hallName'
+    const FIELD_NAME = 'hallName'
 
     const [newHallName, setNewHallName] = useState('')
 
-    const statesMap = new Map<string, StateMapItem>([[MAP_KEY_STR, {val: newHallName, setVal: setNewHallName}]])
 
     const popupButtonProps: ButtonProps = {
-        name: MAP_KEY_STR,
+        name: FIELD_NAME,
         btnTitle: 'добавить зал',
         isSubmit: false,
         handler: async () => {
@@ -66,7 +57,6 @@ export default function HallControl({halls}: HallControlProps) {
                         <h4 className="subtitle">Доступные залы:</h4>
                         <ul className="admin-list admin-list_halls">
                             {halls?.map((hall) => {
-                                console.log(hall)
                                 return (
                                     <li key={hall.id} className="halls__item hall">
                                         <h5 className="subtitle" key={hall.id}>{hall.hall_name}</h5>
@@ -86,18 +76,26 @@ export default function HallControl({halls}: HallControlProps) {
                             })}
                         </ul>
                     </section>
-                    <button onClick={openPopup} className="button button_admin" type="button" disabled={loading}>
-                        {loading ? 'Loading...' : 'Создать зал'}
-                    </button>
+                    <div className="button-list">
+                        <button onClick={() => {
+                            setLoading(true)
+                            setIsPopup(!isPopup)
+                            setLoading(false)
+                        }}
+                                className="button button_admin" type="button"
+                                disabled={loading}>
+                            {loading ? 'Loading...' : 'Создать зал'}
+                        </button>
+                    </div>
                 </>
             </AdminCard>
             {isPopup &&
-                <Popup statesMap={statesMap} setIsPopup={setIsPopup} title="Добавление Зала"
+                <Popup setIsPopup={setIsPopup} title="Добавление Зала"
                        buttonProps={[popupButtonProps]}>
                     <div className="card__text-field">
                         <label className="field__title" htmlFor="hall-name">Название зала</label>
                         <input type="text"
-                               name={MAP_KEY_STR}
+                               name={FIELD_NAME}
                                placeholder='Например, «Зал 1»'
                                id="hall-name"
                                className="field__input"

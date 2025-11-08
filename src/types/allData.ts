@@ -4,7 +4,7 @@ export interface MovieFilm  {
   film_name: string;
   film_origin: string;
   film_poster: string;
-  id?: number;
+  id: number;
 };
 
 export interface MovieHall {

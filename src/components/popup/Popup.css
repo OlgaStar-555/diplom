@@ -50,7 +50,4 @@
 
 .popup .button-list {
     margin-top: var(--admin-size);
-    display: flex;
-    justify-content: center;
-    gap: 1em;
 }

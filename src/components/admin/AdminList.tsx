@@ -5,10 +5,11 @@ import React, {useCallback, useContext, useState} from "react";
 import {AllDataContext} from "../../context/AllDataContext.tsx";
 import HallControl from "./AdminCards/HallControl/HallControl.tsx";
 import HallConfig from "./AdminCards/HallConfig/HallConfig.tsx";
-import HallControlX from "./AdminCards/HallControl/HallControlX.tsx";
 import type {MovieHall} from "../../types/allData.ts";
 import {T_DURATION} from "../../config/constants.ts";
 import HallPriceConfig from "./AdminCards/HallPriceConfig/HallPriceConfig.tsx";
+import FilmsAdmin from "./AdminCards/FilmsAdmin/FilmsAdmin.tsx";
+import OpenHall from "./AdminCards/HallOpen/HallOpen.tsx";
 
 export interface HallControlProps {
     halls?: MovieHall[];
@@ -30,30 +31,6 @@ export default function AdminList() {
     const {allData} = context;
 
     console.log('\n\n\t\tAdminList\n\n')
-    // const {allData, refreshAllData} = context;
-    // const {allData} = context;
-
-    // const [hallsMap, setHallsMap] = useState(new Map(allData?.halls?.map(hall => [hall.id, hall])))
-    // const [filmsMap, setFilmsMap] = useState(new Map(allData?.films?.map(film => [film.id, film])))
-    // const [seancesMap, setSeancesMap] = useState(new Map(allData?.seances?.map(seance => [seance.id, seance])))
-
-    // console.log(hallsMap)
-    // console.log(filmsMap)
-    // console.log(seancesMap)
-
-    // const setNewMapAllData = () => {
-    //     setHallsMap(new Map(allData?.halls?.map(hall => [hall.id, hall])))
-    //     setFilmsMap(new Map(allData?.films?.map(film => [film.id, film])))
-    //     setSeancesMap(new Map(allData?.seances?.map(seance => [seance.id, seance])))
-    // }
-
-    // const getNewAllData = (isRefresh: boolean) => {
-    //     if (isRefresh) {
-    //         refreshAllData()
-    //         setNewMapAllData()
-    //     }
-    // }
-
 
     const [hallsMap, setHallsMap] = useState<Map<number, MovieHall>>(new Map())
 
@@ -75,9 +52,11 @@ export default function AdminList() {
                              hallsMap={hallsMap}
                              setHallsMap={memoizedSetHallsMap}
             />
-            <HallControlX/>
+            <FilmsAdmin/>
 
-
+            <OpenHall  halls={allData?.halls}
+                       hallsMap={hallsMap}
+                       setHallsMap={memoizedSetHallsMap}/>
         </section>
 
     )

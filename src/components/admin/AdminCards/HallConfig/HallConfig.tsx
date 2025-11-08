@@ -21,7 +21,6 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
     const {refreshAllData} = context;
 
 
-
     const [activeHallId, setActiveHallId] = useState<number | undefined>(undefined)
 
     const [activeHall, setActiveHall] = useState<string[][]>([])
@@ -47,14 +46,17 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
 
     useEffect(() => {
         if (halls && halls.length > 0) {
-            const id = activeHallId || halls[0].id
+            const id = (activeHallId !== undefined
+                && halls.find(el => el.id === activeHallId) !== undefined)
+                ? activeHallId
+                : halls[0].id
 
             const hall = halls.filter((hall) => {
                 return hall.id === id
             })[0]
 
             setActiveHallId(id)
-            if(setHallsMap !== undefined) {
+            if (setHallsMap !== undefined) {
                 setHallsMap(new Map(halls.map(hall => [hall.id, hall])));
             }
             setRowCount(hall.hall_config.length)
@@ -162,13 +164,14 @@ export default function HallConfig({halls, hallsMap, setHallsMap}: HallConfigPro
                             </div>
                         </div>
                     </section>
-
-                    <button onClick={saveConfig} className="button button_admin" type="button">
-                        Сохранить
-                    </button>
-                    <button onClick={cancelConfig} className="button button_admin" type="button">
-                        Отмена
-                    </button>
+                    <div className='button-list'>
+                        <button onClick={saveConfig} className="button button_admin" type="button">
+                            Сохранить
+                        </button>
+                        <button onClick={cancelConfig} className="button button_admin button_cancel" type="button">
+                            Отмена
+                        </button>
+                    </div>
                 </>
             </AdminCard>
         </>
