@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createHashRouter} from "react-router-dom";
 import App from "./App.tsx";
 import Client from "./layout/client/Client/Client.tsx";
 import Payment from "./layout/client/Payment/Payment.tsx";
@@ -12,7 +12,7 @@ import * as R from './config/configRouter.ts'
 import ClientLayout from "./layout/client/ClientLayout.tsx";
 import HallClient from "./layout/client/Hall/HallClient.tsx";
 
-export const Router = createBrowserRouter([
+export const Router = createHashRouter([
     {
         path: R.ROOT,
         id: R.ROOT_ID,
@@ -20,7 +20,7 @@ export const Router = createBrowserRouter([
         hydrateFallbackElement: <LoadingFallback/>,
         children: [
             {
-                element: <ClientLayout />,
+                element: <ClientLayout/>,
                 children: [
                     {
                         index: true,
