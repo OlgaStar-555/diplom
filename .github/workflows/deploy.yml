@@ -1,0 +1,44 @@
+name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+
+
+Что нужно сделать после добавления этого файла:
+Сохраните файл: Убедитесь, что файл назван именно .github/workflows/deploy.yml и находится в корне вашего проекта.
+Запушьте изменения: Закоммитьте и запушьте этот файл в вашу основную ветку (main).
+Подождите: Перейдите на вкладку "Actions" в вашем GitHub репозитории. Вы увидите, что новый workflow начал выполняться. Это займет несколько минут.
+Настройте GitHub Pages: После успешного выполнения Action (он создаст ветку gh-pages), перейдите в Settings -> Pages в вашем репозитории.
+  В разделе Build and deployment выберите Deploy from a branch, а затем выберите ветку gh-pages и нажмите Save.
+  Через несколько минут ваш сайт будет доступен по адресу https://<ваше-имя-пользователя>.github.io/<имя-репозитория>/ (обратите внимание на / в конце адреса, это важно из-за HashRouter).
+
+
+
