@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {FILMS} from "../../config/configRouter.ts";
 import useClientContext from "../../layout/client/ClientContext.tsx";
 import {getNumFromTime} from "../../functions.ts";
+import React from "react";
 
 export interface FilmProps extends MovieFilm {
     filmHalls?: Map<number, FilmHall>;
