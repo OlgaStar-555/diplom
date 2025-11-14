@@ -10,7 +10,8 @@
 *   **Маршрутизация:** React Router (BrowserRouter для чистого URL, HashRouter для GitHub Pages).
 *   **Управление состоянием:** React Context API, useState, useCallback.
 *   **Работа с данными:** Fetch API (взаимодействие с сервером), JSON-сериализация.
-*   **Инструменты:** ESLint (контроль качества кода), Git (система контроля версий), npm (менеджер пакетов), qrcode.react (геренация qr-кодов)
+*   **Инструменты:** ESLint (контроль качества кода), Git (система контроля версий), npm (менеджер пакетов).
+*   **Дополнительно:** qrcode.react (геренация qr-кодов), HTML Drag and Drop API.
 
 
 ### [Ссылка на макет](figma.com/file/zGf2lm7mUBGeXWlZQyf9LH/Дизайн-макет-(1)?type=design&mode=design)
