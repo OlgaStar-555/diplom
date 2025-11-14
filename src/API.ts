@@ -1,6 +1,7 @@
 import type {AllData, MovieHall} from "./types/allData.ts";
 import type {LoginRequest} from "./types/login.ts";
 import type {TicketForSend, TicketProps} from "./layout/client/paymentTypes.ts";
+import {toast} from "react-toastify";
 
 export interface DataResponse {
     success?: boolean,
@@ -22,6 +23,13 @@ export default class API {
         ticket: 'ticket'
     }
 
+    private static errorNotification(error?: string) {
+        if(error !== undefined) {
+            console.error(error)
+            toast.error(error)
+        }
+    }
+
     public static async getAllData(): Promise<AllData | undefined> {
 
         return await fetch(
@@ -33,7 +41,7 @@ export default class API {
                 if (data?.success) {
                     return data.result;
                 } else {
-                    console.error(data?.error)
+                    API.errorNotification(data?.error)
                 }
             });
     }
@@ -49,7 +57,7 @@ export default class API {
                 if (data?.success) {
                     return data.result;
                 } else {
-                    console.error(data?.error)
+                    API.errorNotification(data?.error)
                 }
             });
     }
@@ -74,7 +82,7 @@ export default class API {
                 if (data?.success) {
                     return data?.result
                 } else {
-                    console.error(data?.error)
+                    API.errorNotification(data?.error)
                 }
             })
     }
@@ -90,7 +98,7 @@ export default class API {
                 if (data?.success) {
                     return data?.result
                 } else {
-                    console.error(data?.error)
+                    API.errorNotification(data?.error)
                 }
             })
     }
@@ -105,7 +113,7 @@ export default class API {
                 if (data?.success) {
                     return data?.result
                 } else {
-                    console.error(data?.error)
+                    API.errorNotification(data?.error)
                 }
             })
     }
@@ -127,7 +135,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -166,7 +174,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -192,7 +200,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -219,7 +227,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -252,7 +260,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -279,7 +287,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             );
@@ -300,7 +308,7 @@ export default class API {
                     if (data?.success) {
                         return data.result;
                     } else {
-                        console.error(data?.error)
+                        API.errorNotification(data?.error)
                     }
                 }
             )

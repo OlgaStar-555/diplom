@@ -7,7 +7,15 @@
 .legend-item {
     display: flex;
     align-items: center;
+}
+
+.container_admin .legend-item__title {
     color: var(--color-sec-txt);
+}
+
+.container_content .legend-item__title {
+    color: #ffffff;
+    font-weight: 300;
 }
 
 .container_content .legend__list {

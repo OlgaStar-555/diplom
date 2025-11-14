@@ -52,6 +52,7 @@
     font-size: 1.6rem;
     line-height: 1;
     padding: .8rem .88rem .9rem .88rem;
+    color: #000000;
 }
 
 .card__text-field .field__input::placeholder {
@@ -59,7 +60,9 @@
 }
 
 .row.row_buttons {
-    overflow: auto;
+    overflow: visible;
+    flex-wrap: wrap;
+    row-gap: .5em;
 }
 
 .button.button_action {
@@ -70,12 +73,10 @@
 @media screen and (max-width: 560px) {
     .card.card_admin {
         --card-padding-left: clamp(3.5rem, calc(50vw - 125px), 10.4rem);
-
     }
 
     .card.card_admin .card-list {
         --card-padding-left: clamp(3.5rem, calc(4.5rem + var(--circle-size)), 10.4rem);
-
     }
 
     .card_admin:not(.card_auth) .card__body {

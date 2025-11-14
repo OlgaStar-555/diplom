@@ -52,7 +52,8 @@
     cursor: default;
 }
 
-.container_content .hall-place.active:is(.hall-place_standart, .hall-place_vip) {
+.container_content :is(.hall-place.hall-place_active,
+.hall-place.active:is(.hall-place_standart, .hall-place_vip)) {
     background-color: #25C4CE;
     box-shadow: 0 0 4px 0 #16a6af;
 }

@@ -27,7 +27,7 @@ export default function AddFilm() {
 
     const defaultFilm: FilmProps = {
         filmName: '',
-        filmDuration: '0',
+        filmDuration: '',
         filmDescription: '',
         filmOrigin: '',
         filePoster: null
@@ -75,7 +75,7 @@ export default function AddFilm() {
             name: 'loadPoster',
             btnTitle: 'Загрузить постер',
             element:
-                <label className='button button_action button_load-file' htmlFor={LOAD_FILE_ID}>
+                <label key="loadPoster" className='button button_action button_load-file' htmlFor={LOAD_FILE_ID}>
                     <input id={LOAD_FILE_ID}
                            className='button__load-file'
                            onChange={
@@ -93,7 +93,9 @@ export default function AddFilm() {
                                }
                            }
                            type='file' accept='.png'/>
-                    <span>Загрузить постер</span>
+                    <span>
+                        {newFilm.filePoster === null ? 'Загрузить постер' : newFilm.filePoster.name}
+                    </span>
                 </label>,
             isSubmit: false,
         }
@@ -120,6 +122,7 @@ export default function AddFilm() {
                            placeholder='Например, «Гражданин Кейн»'
                            id="hall-name"
                            className="field__input"
+                           value={newFilm.filmName}
 
                            onChange={({target}: ChangeEvent<HTMLInputElement>) => {
                                setNewFilmProp(FilmFields.filmName, target.value)
@@ -128,20 +131,22 @@ export default function AddFilm() {
                     <label className="field__title" htmlFor="hall-name">Продолжительность фильма (мин.)</label>
                     <input type="text"
                            name={FilmFields.filmDuration}
-                           placeholder='Например, «Гражданин Кейн»'
                            id="hall-name"
                            className="field__input"
+                           value={newFilm.filmDuration}
 
                            onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                               setNewFilmProp(FilmFields.filmDuration, target.value)
+                               if ((/^[1-9]\d*$/).test(target.value) || target.value === '') {
+                                   setNewFilmProp(FilmFields.filmDuration, target.value)
+                               }
                            }}
                     />
                     <label className="field__title" htmlFor="hall-name">Описание фильма</label>
                     <textarea
                         name={FilmFields.filmDescription}
-                        placeholder='Например, «Гражданин Кейн»'
                         id="hall-name"
                         className="field__input"
+                        value={newFilm.filmDescription}
 
                         onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
                             setNewFilmProp(FilmFields.filmDescription, target.value)
@@ -150,9 +155,9 @@ export default function AddFilm() {
                     <label className="field__title" htmlFor="hall-name">Страна</label>
                     <input type="text"
                            name={FilmFields.filmOrigin}
-                           placeholder='Например, «Гражданин Кейн»'
                            id="hall-name"
                            className="field__input"
+                           value={newFilm.filmOrigin}
 
                            onChange={({target}: ChangeEvent<HTMLInputElement>) => {
                                setNewFilmProp(FilmFields.filmOrigin, target.value)

@@ -29,6 +29,12 @@ html {
 body {
   margin: 0;
   font-size: 1.4rem;
+  color: #000000;
+}
+
+body * {
+  color: inherit;
+  background-color: transparent;
 }
 
 * {
@@ -46,6 +52,10 @@ ul, ol {
 h2, h3, h4, h5, h6 {
   font-weight: inherit;
   font-size: inherit;
+}
+
+a {
+  text-decoration: none;
 }
 
 .button {
